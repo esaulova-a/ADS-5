@@ -10,32 +10,18 @@ class TStack {
     int top;
 
  public:
-    TStack() : top(0) {}
-
-    void push(const T &item) {
-        if (top <= Size - 1)
-            data[top++] = item;
-        else
-            throw std::string("Full!");
-    }
-
-    T pop() {
-        if (top > 0)
-            return data[--top];
-        else
-            throw std::string("Empty!");
-    }
-
-    bool isEmpty() {
-        return top == 0;
-    }
-
-    T get() {
-        if (!isEmpty())
-            return data[top - 1];
-        else
-            throw std::string("is Empty");
-    }
+  TStack() : top(-1) {}
+  void add(T value) {
+    if (!isFull()) data[++top] = value;
+    else throw std::string("Full");
+  }
+  T show() const { return data[top]; }
+  T pop() {
+    if (isEmpty()) throw std::string("Empty");
+    else return data[top--];
+  }
+  bool isEmpty() const { return top == -1; }
+  bool isFull() const { return top == size - 1; }
 };
 
 #endif  // INCLUDE_TSTACK_H_
