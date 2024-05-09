@@ -6,7 +6,7 @@
 TStack<char, 100> stack1;
 TStack<int, 100> stack2;
 
-int findPriority(char sign) {
+int findPrimacy(char sign) {
   if (sign == '+' || sign == '-') return 1;
   if (sign == '*' || sign == '/') return 2;
   return 0;
@@ -21,7 +21,7 @@ std::string infx2pstfx(std::string inf) {
     } else if (c == '(') {
       stack.add(c);
     } else if (c == '+' || c == '-' || c == '*' || c == '/') {
-      while (!stack.isEmpty() && findPriority(stack.show()) >= findPriority(c)) {
+      while (!stack.isEmpty() && findPrimacy(stack.show()) >= findPrimacy(c)) {
         postfix = postfix + stack.show() + ' ';
         stack.pop();
       }
@@ -64,7 +64,7 @@ int eval(std::string pref) {
       stack2.pop();
 
       if (c == '+') stack2.add((a + b));
-      else if (c == '-') stack2.add((a - b));  
+      else if (c == '-') stack2.add((a - b));
       else if (c == '*') stack2.add((a * b));
       else if (c == '/') stack2.add((a / b));
     }
